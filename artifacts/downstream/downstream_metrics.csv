@@ -1,0 +1,57 @@
+experiment,prefix_len,feature_set,label,split,roc_auc,pr_auc,num_users
+best_prefix_model_comparison,150,Baseline,retention_14d,test,0.8740695578661546,0.31419878850025074,5206
+best_prefix_model_comparison,150,Baseline + GRU,retention_14d,test,0.8761935141550817,0.32155831793496503,5206
+best_prefix_model_comparison,150,Baseline + LSTM,retention_14d,test,0.8720278361363795,0.304325137805159,5206
+best_prefix_model_comparison,150,GRU,retention_14d,test,0.8462344690606876,0.2763652493021355,5206
+best_prefix_model_comparison,150,LSTM,retention_14d,test,0.8372033335899889,0.2525396195701978,5206
+best_prefix_model_comparison,150,Baseline,retention_14d,val,0.8759705291608566,0.3528087178624572,5127
+best_prefix_model_comparison,150,Baseline + GRU,retention_14d,val,0.8743665891547155,0.3589000095236401,5127
+best_prefix_model_comparison,150,Baseline + LSTM,retention_14d,val,0.8740918096139593,0.3555796672692048,5127
+best_prefix_model_comparison,150,GRU,retention_14d,val,0.841267877782754,0.3065331464846314,5127
+best_prefix_model_comparison,150,LSTM,retention_14d,val,0.8350354670958834,0.2817115130452016,5127
+best_prefix_model_comparison,150,Baseline,retention_7d,test,0.8832469156078121,0.4470583364300711,6524
+best_prefix_model_comparison,150,Baseline + GRU,retention_7d,test,0.8833923789285989,0.43836102810441563,6524
+best_prefix_model_comparison,150,Baseline + LSTM,retention_7d,test,0.8856146607364109,0.4456152303996692,6524
+best_prefix_model_comparison,150,GRU,retention_7d,test,0.8545852787097337,0.3946491937766532,6524
+best_prefix_model_comparison,150,LSTM,retention_7d,test,0.8469266683872007,0.3696469701555531,6524
+best_prefix_model_comparison,150,Baseline,retention_7d,val,0.8873175025764343,0.48008329791950455,6500
+best_prefix_model_comparison,150,Baseline + GRU,retention_7d,val,0.8842779543112332,0.4680723982536962,6500
+best_prefix_model_comparison,150,Baseline + LSTM,retention_7d,val,0.8835080298866369,0.4667639802246627,6500
+best_prefix_model_comparison,150,GRU,retention_7d,val,0.8518578237718999,0.40853417449586565,6500
+best_prefix_model_comparison,150,LSTM,retention_7d,val,0.8460448514256269,0.40546563093419163,6500
+gru_prefix_ablation,50,Baseline,retention_14d,test,0.8294006503596257,0.29995210195410343,5291
+gru_prefix_ablation,50,Baseline + GRU,retention_14d,test,0.8204882738054706,0.2960509495043339,5291
+gru_prefix_ablation,50,GRU,retention_14d,test,0.7978950421796334,0.2775872552419398,5291
+gru_prefix_ablation,50,Baseline,retention_14d,val,0.8243958640805907,0.31533902431928246,5214
+gru_prefix_ablation,50,Baseline + GRU,retention_14d,val,0.8263190709659416,0.30700697220115336,5214
+gru_prefix_ablation,50,GRU,retention_14d,val,0.808197718399086,0.29281778045874046,5214
+gru_prefix_ablation,50,Baseline,retention_7d,test,0.8250683934622538,0.3924782333472473,6578
+gru_prefix_ablation,50,Baseline + GRU,retention_7d,test,0.8158405508739076,0.37342181046599615,6578
+gru_prefix_ablation,50,GRU,retention_7d,test,0.7932805612881857,0.35682334275561095,6578
+gru_prefix_ablation,50,Baseline,retention_7d,val,0.827629401129166,0.4212355399768019,6556
+gru_prefix_ablation,50,Baseline + GRU,retention_7d,val,0.8332843097905653,0.4339944179160885,6556
+gru_prefix_ablation,50,GRU,retention_7d,val,0.8067993647007556,0.3984422697199747,6556
+gru_prefix_ablation,100,Baseline,retention_14d,test,0.8594621426834624,0.3214286313583783,5239
+gru_prefix_ablation,100,Baseline + GRU,retention_14d,test,0.8535371009486794,0.29226673226879196,5239
+gru_prefix_ablation,100,GRU,retention_14d,test,0.8239378413626539,0.26023799889001953,5239
+gru_prefix_ablation,100,Baseline,retention_14d,val,0.859304932735426,0.330126964429775,5160
+gru_prefix_ablation,100,Baseline + GRU,retention_14d,val,0.8634170517740307,0.34204996097449836,5160
+gru_prefix_ablation,100,GRU,retention_14d,val,0.83538538957518,0.2967007483508925,5160
+gru_prefix_ablation,100,Baseline,retention_7d,test,0.8660722064620321,0.4415925294221904,6547
+gru_prefix_ablation,100,Baseline + GRU,retention_7d,test,0.8680242034020761,0.4379556191174935,6547
+gru_prefix_ablation,100,GRU,retention_7d,test,0.8334898373335884,0.3788065564564853,6547
+gru_prefix_ablation,100,Baseline,retention_7d,val,0.8686445295729996,0.46006205207349005,6516
+gru_prefix_ablation,100,Baseline + GRU,retention_7d,val,0.869254441729137,0.46189187618216176,6516
+gru_prefix_ablation,100,GRU,retention_7d,val,0.8383598626201249,0.40653207760496796,6516
+gru_prefix_ablation,150,Baseline,retention_14d,test,0.8740695578661546,0.31419878850025074,5206
+gru_prefix_ablation,150,Baseline + GRU,retention_14d,test,0.8761935141550817,0.32155831793496503,5206
+gru_prefix_ablation,150,GRU,retention_14d,test,0.8462344690606876,0.2763652493021355,5206
+gru_prefix_ablation,150,Baseline,retention_14d,val,0.8759705291608566,0.3528087178624572,5127
+gru_prefix_ablation,150,Baseline + GRU,retention_14d,val,0.8743665891547155,0.3589000095236401,5127
+gru_prefix_ablation,150,GRU,retention_14d,val,0.841267877782754,0.3065331464846314,5127
+gru_prefix_ablation,150,Baseline,retention_7d,test,0.8832469156078121,0.4470583364300711,6524
+gru_prefix_ablation,150,Baseline + GRU,retention_7d,test,0.8833923789285989,0.43836102810441563,6524
+gru_prefix_ablation,150,GRU,retention_7d,test,0.8545852787097337,0.3946491937766532,6524
+gru_prefix_ablation,150,Baseline,retention_7d,val,0.8873175025764343,0.48008329791950455,6500
+gru_prefix_ablation,150,Baseline + GRU,retention_7d,val,0.8842779543112332,0.4680723982536962,6500
+gru_prefix_ablation,150,GRU,retention_7d,val,0.8518578237718999,0.40853417449586565,6500

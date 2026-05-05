@@ -1,0 +1,10 @@
+metric,value
+users,52495.0
+vocab_size,81.0
+min_len,10.0
+q25_len,25.0
+median_len,83.0
+q75_len,563.0
+p95_len,4694.0
+max_len,185204.0
+mean_len,972.12

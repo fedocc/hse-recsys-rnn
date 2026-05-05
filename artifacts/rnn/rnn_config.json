@@ -1,0 +1,13 @@
+{
+  "max_len": 128,
+  "stride": 64,
+  "event_dim": 64,
+  "hidden_dim": 128,
+  "num_layers": 1,
+  "dropout": 0.0,
+  "batch_size": 128,
+  "epochs": 5,
+  "lr": 0.001,
+  "seed": 42,
+  "model_type": "gru"
+}

@@ -1,0 +1,6 @@
+metric,value
+raw_csv_path,<local raw events csv>
+chunk_size,250000
+parts_written,293
+rows_read,73063802
+rows_kept,51102463

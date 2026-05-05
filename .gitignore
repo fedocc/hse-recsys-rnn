@@ -1,0 +1,36 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Large / private data artifacts
+events_sample.csv
+artifacts/**/*.parquet
+artifacts/**/split.json
+artifacts/**/split_users.*
+artifacts/experiments/
+old/
+reports/intermediate_team_slides/
+
+# LaTeX / report build files
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+
+# Keep small metrics/config summaries in artifacts.
+!artifacts/
+!artifacts/data/
+!artifacts/rnn/
+!artifacts/downstream/
+!artifacts/data/*.csv
+!artifacts/data/event2idx.json
+!artifacts/rnn/*.csv
+!artifacts/rnn/*_config.json
+!artifacts/rnn/*.pt
+!artifacts/downstream/*.csv
+!artifacts/downstream/*_config.json

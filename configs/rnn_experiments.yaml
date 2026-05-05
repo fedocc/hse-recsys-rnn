@@ -1,0 +1,71 @@
+# План RNN-экспериментов.
+# Файл намеренно простой: его можно парсить напрямую или использовать
+# как источник правды при реализации runner'а.
+
+defaults:
+  seed: 42
+  model_type: gru
+  event_dim: 64
+  hidden_dim: 128
+  num_layers: 1
+  dropout: 0.0
+  max_len: 128
+  stride: 64
+  batch_size: 128
+  epochs: 5
+  lr: 0.001
+  pooling: last
+  downstream_horizons: [7, 14]
+  downstream_metrics: [roc_auc, pr_auc]
+
+series:
+  context_saturation:
+    description: "Сколько раннего поведения пользователя достаточно для retention?"
+    base_checkpoint: artifacts/rnn/rnn_encoder.pt
+    model_type: gru
+    pooling: last
+    prefix_lengths: [25, 50, 75, 100, 150, 200, 300]
+    stop_rule:
+      min_roc_auc_gain: 0.002
+      track_valid_users: true
+
+  pooling_ablation:
+    description: "Как агрегировать hidden states RNN в user embeddings?"
+    base_checkpoint: artifacts/rnn/rnn_encoder.pt
+    model_type: gru
+    prefix_len: 150
+    pooling: [last, mean, max, last_mean]
+
+  capacity_sweep:
+    description: "Улучшает ли большая capacity sequence- и downstream-метрики?"
+    experiments:
+      - experiment_id: gru_h64_len128
+        model_type: gru
+        hidden_dim: 64
+        max_len: 128
+      - experiment_id: gru_h128_len128
+        model_type: gru
+        hidden_dim: 128
+        max_len: 128
+      - experiment_id: gru_h256_len128
+        model_type: gru
+        hidden_dim: 256
+        max_len: 128
+      - experiment_id: gru_h128_len64
+        model_type: gru
+        hidden_dim: 128
+        max_len: 64
+      - experiment_id: gru_h128_len256
+        model_type: gru
+        hidden_dim: 128
+        max_len: 256
+
+  supervised_retention:
+    description: "Может ли supervised training на retention обогнать self-supervised next-event embeddings?"
+    model_type: gru
+    prefix_len: 150
+    targets: [retention_7d, retention_14d]
+    compare_to:
+      - tabular_baseline
+      - next_event_gru_embeddings
+      - tabular_plus_gru_embeddings

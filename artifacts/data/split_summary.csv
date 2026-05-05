@@ -1,0 +1,4 @@
+split,users,mean_seq_len,median_seq_len,max_seq_len
+train,36746,969.5,84.0,185204
+val,7874,1001.54,84.0,131726
+test,7875,954.94,80.0,64629
