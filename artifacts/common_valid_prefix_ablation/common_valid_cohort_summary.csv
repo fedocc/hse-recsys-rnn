@@ -1,0 +1,7 @@
+label,split,common_valid_users
+retention_7d,test,2239
+retention_7d,train,10239
+retention_7d,val,2192
+retention_14d,test,1824
+retention_14d,train,8344
+retention_14d,val,1826

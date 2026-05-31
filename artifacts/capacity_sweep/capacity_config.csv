@@ -1,0 +1,7 @@
+experiment_id,model_type,hidden_dim,num_layers,dropout,source
+gru_h64_l1,gru,64,1,0.0,train
+gru_h128_l1_ref,gru,128,1,0.0,reference
+gru_h256_l1,gru,256,1,0.0,train
+gru_h128_l2_d02,gru,128,2,0.2,train
+gru_h256_l2_d02,gru,256,2,0.2,train
+lstm_h128_l1_ref,lstm,128,1,0.0,reference

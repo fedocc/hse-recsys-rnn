@@ -1,0 +1,4 @@
+history_window,label,valid_users,positive_rate
+full,retention_7d,52495,0.13338413182207828
+full,retention_14d,52495,0.07000666730164777
+full,retention_30d,52495,0.004019430421944947

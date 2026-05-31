@@ -73,6 +73,26 @@ class EventWindowDataset(Dataset):
         return torch.tensor(padded, dtype=torch.long), torch.tensor(length, dtype=torch.long)
 
 
+class LastEventWindowDataset(Dataset):
+    def __init__(self, user_sequences: list[list[int]], max_len: int):
+        self.max_tokens = max_len + 1
+        self.samples: list[list[int]] = []
+
+        for seq in user_sequences:
+            if len(seq) < 2:
+                continue
+            self.samples.append(seq[-self.max_tokens :])
+
+    def __len__(self) -> int:
+        return len(self.samples)
+
+    def __getitem__(self, idx: int) -> tuple[torch.Tensor, torch.Tensor]:
+        seq = self.samples[idx]
+        length = len(seq)
+        padded = seq + [0] * (self.max_tokens - length)
+        return torch.tensor(padded, dtype=torch.long), torch.tensor(length, dtype=torch.long)
+
+
 def prepared_sequences_to_frame(
     prepared: PreparedSequences,
     *,
@@ -403,4 +423,12 @@ def build_next_event_examples(
     stride: int,
 ) -> list[NextEventExample]:
     dataset = EventWindowDataset(user_sequences, max_len=max_len, stride=stride)
+    return [NextEventExample(prefix=window[:-1], target=window[-1]) for window in dataset.samples]
+
+
+def build_last_event_examples(
+    user_sequences: list[list[int]],
+    max_len: int,
+) -> list[NextEventExample]:
+    dataset = LastEventWindowDataset(user_sequences, max_len=max_len)
     return [NextEventExample(prefix=window[:-1], target=window[-1]) for window in dataset.samples]

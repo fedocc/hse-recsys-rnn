@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "prefix_len": 150,
+  "pooling": "mean",
+  "batch_size": 256,
+  "frozen_epochs": 6,
+  "finetune_epochs": 5,
+  "frozen_lr": 0.001,
+  "finetune_lr": 0.0002,
+  "dropout": 0.15,
+  "horizons": {
+    "retention_7d": 7,
+    "retention_14d": 14
+  },
+  "base_checkpoint": "artifacts/rnn/rnn_encoder.pt",
+  "main_embedding_artifact": "artifacts/rnn/main/gru_mean_prefix150_embeddings.parquet"
+}

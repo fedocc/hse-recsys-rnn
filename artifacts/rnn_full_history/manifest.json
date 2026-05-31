@@ -1,0 +1,57 @@
+{
+  "task": "rnn_full_history_user_embeddings",
+  "history_mode": "last_512_events_from_full_history",
+  "embedding_file": "/Users/fedornikonov/hse_recsys_rnn/artifacts/rnn_full_history/embeddings/rnn_max_last512_full_history.parquet",
+  "metrics_file": "/Users/fedornikonov/hse_recsys_rnn/artifacts/rnn_full_history/full_history_metrics.csv",
+  "summary_file": "/Users/fedornikonov/hse_recsys_rnn/artifacts/rnn_full_history/full_history_summary.csv",
+  "label_summary_file": "/Users/fedornikonov/hse_recsys_rnn/artifacts/rnn_full_history/full_history_label_summary.csv",
+  "training_history_file": "/Users/fedornikonov/hse_recsys_rnn/artifacts/rnn_full_history/full_history_training_history.csv",
+  "next_event_metrics_file": "/Users/fedornikonov/hse_recsys_rnn/artifacts/rnn_full_history/full_history_next_event_metrics.csv",
+  "checkpoint": "/Users/fedornikonov/hse_recsys_rnn/artifacts/rnn_full_history/checkpoints/gru_h256_l1_last512.pt",
+  "split_csv": "/Users/fedornikonov/hse_recsys_rnn/artifacts/data/master_split_lesha.csv",
+  "clean_events_glob": "/Users/fedornikonov/hse_recsys_rnn/artifacts/data/clean_events/*.parquet",
+  "prepared_users": 52495,
+  "data_end_ts": 1774814007,
+  "pooling": "max",
+  "history_len": 512,
+  "horizons": {
+    "retention_7d": 7,
+    "retention_14d": 14,
+    "retention_30d": 30
+  },
+  "seeds": [
+    11,
+    42,
+    77,
+    123,
+    202
+  ],
+  "model_config": {
+    "experiment_id": "gru_h256_l1_last512",
+    "model_type": "gru",
+    "event_dim": 64,
+    "hidden_dim": 256,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "max_len": 512,
+    "stride": 256,
+    "train_window_mode": "last",
+    "epochs": 5,
+    "lr": 0.001,
+    "train_batch_size": 64,
+    "vocab_size": 81,
+    "seed": 42
+  },
+  "artifact_contract": {
+    "join_key": "appmetrica_device_id",
+    "embedding_columns": "emb_000..emb_N",
+    "labels": [
+      "retention_7d",
+      "retention_14d",
+      "retention_30d"
+    ],
+    "split_column": "split",
+    "label_definition": "duration label: last_event_ts - first_event_ts >= horizon_days",
+    "baseline_leakage_guard": "history_span_days is not included in baseline features"
+  }
+}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import csv
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -52,6 +53,64 @@ def build_user_split(
         val_ratio=val_ratio,
         test_ratio=test_ratio,
     )
+
+
+def build_user_split_from_master_csv(
+    user_ids: list[str],
+    master_split_path: Path | str,
+    *,
+    seed: int = 42,
+    user_col: str = "appmetrica_device_id",
+    split_col: str = "split",
+) -> tuple[UserSplit, pl.DataFrame]:
+    master_split_path = Path(master_split_path)
+    with master_split_path.open(newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+        expected_columns = [user_col, split_col]
+        if reader.fieldnames != expected_columns:
+            raise ValueError(f"Expected columns {expected_columns}, got {reader.fieldnames}")
+        rows = [{user_col: str(row[user_col]), split_col: row[split_col]} for row in reader]
+
+    allowed_splits = {"train", "val", "test"}
+    bad_splits = sorted({row[split_col] for row in rows} - allowed_splits)
+    if bad_splits:
+        raise ValueError(f"Unsupported split values: {bad_splits}")
+
+    master_user_ids = [row[user_col] for row in rows]
+    duplicates = len(master_user_ids) - len(set(master_user_ids))
+    if duplicates:
+        raise ValueError(f"Master split contains duplicate user ids: {duplicates}")
+
+    prepared_user_ids = set(map(str, user_ids))
+    master_user_id_set = set(master_user_ids)
+    split_to_users = {"train": [], "val": [], "test": []}
+    for row in rows:
+        user_id = row[user_col]
+        if user_id in prepared_user_ids:
+            split_to_users[row[split_col]].append(user_id)
+
+    split = UserSplit(
+        train_user_ids=split_to_users["train"],
+        val_user_ids=split_to_users["val"],
+        test_user_ids=split_to_users["test"],
+        seed=seed,
+        val_ratio=0.15,
+        test_ratio=0.15,
+    )
+    summary = pl.DataFrame(
+        [
+            {"metric": "master_split_path", "value": str(master_split_path)},
+            {"metric": "master_users", "value": len(master_user_id_set)},
+            {"metric": "prepared_users", "value": len(prepared_user_ids)},
+            {"metric": "overlap_users", "value": len(prepared_user_ids & master_user_id_set)},
+            {"metric": "prepared_users_missing_in_master", "value": len(prepared_user_ids - master_user_id_set)},
+            {"metric": "master_users_missing_in_prepared", "value": len(master_user_id_set - prepared_user_ids)},
+            {"metric": "rnn_train_users", "value": len(split.train_user_ids)},
+            {"metric": "rnn_val_users", "value": len(split.val_user_ids)},
+            {"metric": "rnn_test_users", "value": len(split.test_user_ids)},
+        ]
+    )
+    return split, summary
 
 
 def save_user_split(split: UserSplit, path: Path | str) -> None:

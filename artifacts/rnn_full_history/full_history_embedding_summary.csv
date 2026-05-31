@@ -1,0 +1,6 @@
+metric,value
+users,52495
+embedding_dim,256
+history_window,last_512
+pooling,max
+path,/Users/fedornikonov/hse_recsys_rnn/artifacts/rnn_full_history/embeddings/rnn_max_last512_full_history.parquet

@@ -1,0 +1,20 @@
+{
+  "model": "GRU",
+  "checkpoint": "artifacts/rnn/rnn_encoder.pt",
+  "embedding_artifact": "artifacts/rnn/main/gru_mean_prefix150_embeddings.parquet",
+  "source_artifact": "artifacts/pooling_ablation/embeddings/gru_pooling_mean.parquet",
+  "prefix_len": 150,
+  "pooling": "mean",
+  "embedding_dim": 128,
+  "reason": "Mean pooling is selected as the main RNN embedding after pooling ablation: it outperforms last pooling on retention_7d and retention_14d and keeps the embedding dimensionality at 128.",
+  "test_metrics_reference": {
+    "retention_7d_gru_mean": {
+      "roc_auc": 0.6713909652429498,
+      "pr_auc": 0.46504705067800306
+    },
+    "retention_14d_gru_mean": {
+      "roc_auc": 0.6894218783346768,
+      "pr_auc": 0.3361675734648604
+    }
+  }
+}

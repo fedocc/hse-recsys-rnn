@@ -1,0 +1,49 @@
+feature_set,label,split,roc_auc,pr_auc,num_users,experiment_id,model_type,hidden_dim,num_layers,dropout,pooling,feature_group,num_features
+gru_h64_l1 max,retention_7d,val,0.6647827030439328,0.47016099941177397,2783,gru_h64_l1,gru,64,1,0.0,max,embedding,64
+gru_h64_l1 max,retention_7d,test,0.6853788198845234,0.48411301587856526,2805,gru_h64_l1,gru,64,1,0.0,max,embedding,64
+Baseline + gru_h64_l1 max,retention_7d,val,0.657012586060642,0.4678741134923492,2783,gru_h64_l1,gru,64,1,0.0,max,baseline_plus_embedding,79
+Baseline + gru_h64_l1 max,retention_7d,test,0.687963968857505,0.47757325444826426,2805,gru_h64_l1,gru,64,1,0.0,max,baseline_plus_embedding,79
+gru_h64_l1 max,retention_14d,val,0.7073210008625573,0.36187853532699865,2318,gru_h64_l1,gru,64,1,0.0,max,embedding,64
+gru_h64_l1 max,retention_14d,test,0.6908413205537807,0.35118563296995725,2303,gru_h64_l1,gru,64,1,0.0,max,embedding,64
+Baseline + gru_h64_l1 max,retention_14d,val,0.7098383353015434,0.3688599202739434,2318,gru_h64_l1,gru,64,1,0.0,max,baseline_plus_embedding,79
+Baseline + gru_h64_l1 max,retention_14d,test,0.6947090145962538,0.356712706483053,2303,gru_h64_l1,gru,64,1,0.0,max,baseline_plus_embedding,79
+gru_h128_l1_ref max,retention_7d,val,0.6606467370933696,0.47546078433961536,2783,gru_h128_l1_ref,gru,128,1,0.0,max,embedding,128
+gru_h128_l1_ref max,retention_7d,test,0.6814413714366185,0.475860680665819,2805,gru_h128_l1_ref,gru,128,1,0.0,max,embedding,128
+Baseline + gru_h128_l1_ref max,retention_7d,val,0.6629628533664753,0.4657662777599511,2783,gru_h128_l1_ref,gru,128,1,0.0,max,baseline_plus_embedding,143
+Baseline + gru_h128_l1_ref max,retention_7d,test,0.677406476954956,0.4760007148981674,2805,gru_h128_l1_ref,gru,128,1,0.0,max,baseline_plus_embedding,143
+gru_h128_l1_ref max,retention_14d,val,0.6898576101858263,0.35182120267423206,2318,gru_h128_l1_ref,gru,128,1,0.0,max,embedding,128
+gru_h128_l1_ref max,retention_14d,test,0.6912121781619995,0.357899445887962,2303,gru_h128_l1_ref,gru,128,1,0.0,max,embedding,128
+Baseline + gru_h128_l1_ref max,retention_14d,val,0.7001305558743358,0.36986709644811794,2318,gru_h128_l1_ref,gru,128,1,0.0,max,baseline_plus_embedding,143
+Baseline + gru_h128_l1_ref max,retention_14d,test,0.6950172273382197,0.360310177315729,2303,gru_h128_l1_ref,gru,128,1,0.0,max,baseline_plus_embedding,143
+gru_h256_l1 max,retention_7d,val,0.6671499871772109,0.47484551532239194,2783,gru_h256_l1,gru,256,1,0.0,max,embedding,256
+gru_h256_l1 max,retention_7d,test,0.6808786991771782,0.48249358366488415,2805,gru_h256_l1,gru,256,1,0.0,max,embedding,256
+Baseline + gru_h256_l1 max,retention_7d,val,0.665325822138052,0.4778374318267271,2783,gru_h256_l1,gru,256,1,0.0,max,baseline_plus_embedding,271
+Baseline + gru_h256_l1 max,retention_7d,test,0.6884964642806848,0.4945734914759417,2805,gru_h256_l1,gru,256,1,0.0,max,baseline_plus_embedding,271
+gru_h256_l1 max,retention_14d,val,0.7098944817314325,0.3669786655364563,2318,gru_h256_l1,gru,256,1,0.0,max,embedding,256
+gru_h256_l1 max,retention_14d,test,0.7043638413831985,0.35896215744341664,2303,gru_h256_l1,gru,256,1,0.0,max,embedding,256
+Baseline + gru_h256_l1 max,retention_14d,val,0.6975342462372637,0.3662968762880574,2318,gru_h256_l1,gru,256,1,0.0,max,baseline_plus_embedding,271
+Baseline + gru_h256_l1 max,retention_14d,test,0.7100231786005137,0.36621052428459705,2303,gru_h256_l1,gru,256,1,0.0,max,baseline_plus_embedding,271
+gru_h128_l2_d02 max,retention_7d,val,0.665952782545225,0.4671086302281352,2783,gru_h128_l2_d02,gru,128,2,0.2,max,embedding,128
+gru_h128_l2_d02 max,retention_7d,test,0.6763396000563301,0.4841370863379216,2805,gru_h128_l2_d02,gru,128,2,0.2,max,embedding,128
+Baseline + gru_h128_l2_d02 max,retention_7d,val,0.6683576719733286,0.48281306709719746,2783,gru_h128_l2_d02,gru,128,2,0.2,max,baseline_plus_embedding,143
+Baseline + gru_h128_l2_d02 max,retention_7d,test,0.6824535528195224,0.4930737512143635,2805,gru_h128_l2_d02,gru,128,2,0.2,max,baseline_plus_embedding,143
+gru_h128_l2_d02 max,retention_14d,val,0.7017828650967878,0.3663437611810926,2318,gru_h128_l2_d02,gru,128,2,0.2,max,embedding,128
+gru_h128_l2_d02 max,retention_14d,test,0.6947390841320553,0.37230246943706846,2303,gru_h128_l2_d02,gru,128,2,0.2,max,embedding,128
+Baseline + gru_h128_l2_d02 max,retention_14d,val,0.704667927801861,0.36921555634319986,2318,gru_h128_l2_d02,gru,128,2,0.2,max,baseline_plus_embedding,143
+Baseline + gru_h128_l2_d02 max,retention_14d,test,0.6890872642986907,0.3626047771337809,2303,gru_h128_l2_d02,gru,128,2,0.2,max,baseline_plus_embedding,143
+gru_h256_l2_d02 max,retention_7d,val,0.6635041230198655,0.4712220386832713,2783,gru_h256_l2_d02,gru,256,2,0.2,max,embedding,256
+gru_h256_l2_d02 max,retention_7d,test,0.6840724143480799,0.4910895508150511,2805,gru_h256_l2_d02,gru,256,2,0.2,max,embedding,256
+Baseline + gru_h256_l2_d02 max,retention_7d,val,0.6668701051468703,0.4798435893335676,2783,gru_h256_l2_d02,gru,256,2,0.2,max,baseline_plus_embedding,271
+Baseline + gru_h256_l2_d02 max,retention_7d,test,0.6812640825235883,0.4823854962921795,2805,gru_h256_l2_d02,gru,256,2,0.2,max,baseline_plus_embedding,271
+gru_h256_l2_d02 max,retention_14d,val,0.7055045713065831,0.36727771950031346,2318,gru_h256_l2_d02,gru,256,2,0.2,max,embedding,256
+gru_h256_l2_d02 max,retention_14d,test,0.6904829919188122,0.3657833764758469,2303,gru_h256_l2_d02,gru,256,2,0.2,max,embedding,256
+Baseline + gru_h256_l2_d02 max,retention_14d,val,0.7069458686716494,0.3778287307131904,2318,gru_h256_l2_d02,gru,256,2,0.2,max,baseline_plus_embedding,271
+Baseline + gru_h256_l2_d02 max,retention_14d,test,0.6943381569880348,0.3544683267366686,2303,gru_h256_l2_d02,gru,256,2,0.2,max,baseline_plus_embedding,271
+lstm_h128_l1_ref max,retention_7d,val,0.6686406364048845,0.46981769540359714,2783,lstm_h128_l1_ref,lstm,128,1,0.0,max,embedding,128
+lstm_h128_l1_ref max,retention_7d,test,0.6885272698010341,0.47947217494468086,2805,lstm_h128_l1_ref,lstm,128,1,0.0,max,embedding,128
+Baseline + lstm_h128_l1_ref max,retention_7d,val,0.6654632972322503,0.4649304045542414,2783,lstm_h128_l1_ref,lstm,128,1,0.0,max,baseline_plus_embedding,143
+Baseline + lstm_h128_l1_ref max,retention_7d,test,0.6908640885589554,0.48768916802235585,2805,lstm_h128_l1_ref,lstm,128,1,0.0,max,baseline_plus_embedding,143
+lstm_h128_l1_ref max,retention_14d,val,0.7054040013277705,0.3745500365236371,2318,lstm_h128_l1_ref,lstm,128,1,0.0,max,embedding,128
+lstm_h128_l1_ref max,retention_14d,test,0.6971985215811565,0.3602818821620364,2303,lstm_h128_l1_ref,lstm,128,1,0.0,max,embedding,128
+Baseline + lstm_h128_l1_ref max,retention_14d,val,0.7126407208461205,0.3692997362910273,2318,lstm_h128_l1_ref,lstm,128,1,0.0,max,baseline_plus_embedding,143
+Baseline + lstm_h128_l1_ref max,retention_14d,test,0.6980204222263986,0.361030674681617,2303,lstm_h128_l1_ref,lstm,128,1,0.0,max,baseline_plus_embedding,143

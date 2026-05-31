@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
+from .data import NextEventExample
 from .models import RecurrentEncoder
 
 
@@ -81,4 +82,51 @@ def evaluate_next_event_model(
     return {
         "loss": total_loss / total_tokens,
         **{key: value / total_tokens for key, value in metric_sums.items()},
+    }
+
+
+@torch.no_grad()
+def evaluate_next_event_model_on_examples(
+    model: RecurrentEncoder,
+    examples: Sequence[NextEventExample],
+    device: torch.device,
+    ks: Sequence[int] = (1, 5, 10),
+    batch_size: int = 4096,
+    ignore_index: int = 0,
+) -> dict[str, float]:
+    criterion = nn.CrossEntropyLoss(ignore_index=ignore_index)
+    model.eval()
+    total_loss = 0.0
+    total_examples = 0
+    metric_sums = {"mrr": 0.0, **{f"hit@{k}": 0.0 for k in ks}, **{f"recall@{k}": 0.0 for k in ks}}
+
+    for offset in range(0, len(examples), batch_size):
+        batch_examples = examples[offset : offset + batch_size]
+        if not batch_examples:
+            continue
+
+        lengths = torch.tensor([len(item.prefix) for item in batch_examples], dtype=torch.long, device=device)
+        max_len = int(lengths.max().item())
+        padded = [item.prefix + [0] * (max_len - len(item.prefix)) for item in batch_examples]
+        inputs = torch.tensor(padded, dtype=torch.long, device=device)
+        targets = torch.tensor([item.target for item in batch_examples], dtype=torch.long, device=device)
+
+        logits_by_step = model(inputs, lengths)
+        last_indices = (lengths - 1).view(-1, 1, 1).expand(-1, 1, logits_by_step.size(-1))
+        logits = logits_by_step.gather(1, last_indices).squeeze(1)
+        loss = criterion(logits, targets)
+        batch_metrics = ranking_metrics_from_logits(logits, targets, ks=ks, ignore_index=ignore_index)
+
+        num_examples = len(batch_examples)
+        total_loss += loss.item() * num_examples
+        total_examples += num_examples
+        for key, value in batch_metrics.items():
+            metric_sums[key] += value * num_examples
+
+    if total_examples == 0:
+        return {"loss": 0.0, **{key: 0.0 for key in metric_sums}}
+
+    return {
+        "loss": total_loss / total_examples,
+        **{key: value / total_examples for key, value in metric_sums.items()},
     }

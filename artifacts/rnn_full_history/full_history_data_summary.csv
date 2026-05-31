@@ -1,0 +1,4 @@
+split,users,next_event_windows
+train,36760,36760
+val,7896,7896
+test,7839,7839

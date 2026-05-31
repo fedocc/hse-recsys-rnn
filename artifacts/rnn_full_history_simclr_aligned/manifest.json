@@ -1,0 +1,54 @@
+{
+  "task": "rnn_full_history_simclr_aligned",
+  "simclr_dir": "/Users/fedornikonov/Downloads/курсач",
+  "history_mode": "last_512_events_from_simclr_processed_sequences",
+  "embedding_file": "artifacts/rnn_full_history_simclr_aligned/embeddings/rnn_max_last512_simclr_aligned.parquet",
+  "metrics_file": "artifacts/rnn_full_history_simclr_aligned/aligned_metrics.csv",
+  "summary_file": "artifacts/rnn_full_history_simclr_aligned/aligned_summary.csv",
+  "label_summary_file": "artifacts/rnn_full_history_simclr_aligned/aligned_label_summary.csv",
+  "data_summary_file": "artifacts/rnn_full_history_simclr_aligned/aligned_data_summary.csv",
+  "training_history_file": "artifacts/rnn_full_history_simclr_aligned/aligned_training_history.csv",
+  "next_event_metrics_file": "artifacts/rnn_full_history_simclr_aligned/aligned_next_event_metrics.csv",
+  "checkpoint": "artifacts/rnn_full_history_simclr_aligned/checkpoints/simclr_aligned_gru_h256_l1_last512.pt",
+  "pooling": "max",
+  "history_len": 512,
+  "seeds": [
+    11,
+    42,
+    77,
+    123,
+    202
+  ],
+  "model_config": {
+    "experiment_id": "simclr_aligned_gru_h256_l1_last512",
+    "model_type": "gru",
+    "event_dim": 64,
+    "hidden_dim": 256,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "max_len": 512,
+    "epochs": 5,
+    "lr": 0.001,
+    "train_batch_size": 64,
+    "vocab_size": 502,
+    "seed": 42,
+    "source_sequences": "SimCLR data/processed/*_sequences.pt"
+  },
+  "artifact_contract": {
+    "join_key": "appmetrica_device_id",
+    "source_split": "SimCLR processed user_ids_train/val/test.npy",
+    "labels": [
+      "retention_1d",
+      "retention_7d",
+      "retention_14d",
+      "retention_30d"
+    ],
+    "split_column": "split",
+    "label_definition": "SimCLR retention_labels.csv duration labels",
+    "coverage": {
+      "train": 47875,
+      "val": 10259,
+      "test": 10260
+    }
+  }
+}

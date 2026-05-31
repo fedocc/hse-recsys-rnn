@@ -1,52 +1,55 @@
 # Следующие шаги по RNN-ветке
 
-Цель ближайшей итерации: превратить RNN-ветку из рабочего baseline в полноценное исследование того, как строить пользовательские эмбеддинги с помощью `GRU/LSTM`.
+RNN-ветка как отдельная исследовательская часть закрыта. Новые крупные эксперименты сейчас не нужны: основной кандидат выбран и проверен на нескольких seed.
 
-## Приоритетный порядок
+## Зафиксировано
 
-1. **Каркас runner'а для экспериментов**
-   - довести `scripts/run_rnn_experiments.py` до запуска реальных серий;
-   - писать результаты в `artifacts/experiments/rnn/results.csv`;
-   - не запускать эксперименты вручную из ноутбуков.
+- общий user-level split из `master_split_lesha.csv`;
+- честный prefix-based retention protocol;
+- next-event baseline для `GRU/LSTM` против `MostPopular` и `Markov-1`;
+- pooling ablation;
+- supervised fine-tuning;
+- negative controls;
+- common-valid prefix ablation;
+- order sensitivity analysis;
+- capacity sweep;
+- final seed stability.
 
-2. **Насыщение контекста**
-   - `prefix_len = 25 / 50 / 75 / 100 / 150 / 200 / 300`;
-   - метрики: `ROC-AUC`, `PR-AUC`, `valid_users`, `positive_rate`, `marginal_gain`;
-   - главный вопрос: когда увеличение префикса перестаёт окупаться.
+Финальный RNN-кандидат:
 
-3. **Ablation по pooling**
-   - `last`, `mean`, `max`, `last_mean`;
-   - использовать одну обученную GRU как encoder;
-   - главный вопрос: какой способ агрегировать RNN hidden states в user embedding лучше для retention.
+```text
+GRU, hidden_dim=256, num_layers=1, pooling=max, prefix_len=150
+```
 
-4. **Перебор capacity модели**
-   - `hidden_dim = 64 / 128 / 256`;
-   - `max_len = 64 / 128 / 256`;
-   - маленький controlled set, а не полный перебор;
-   - главный вопрос: переносится ли рост sequence quality в downstream.
+Стабильный downstream результат с `Baseline + embedding`:
 
-5. **Supervised GRU для retention**
-   - отдельный supervised baseline;
-   - не заменяет self-supervised next-event setup;
-   - главный вопрос: стоит ли обучать RNN напрямую под retention или self-supervised next-event objective даёт более универсальные embeddings.
+| target | ROC-AUC mean ± std | PR-AUC mean ± std |
+|---|---:|---:|
+| retention_7d | 0.6922 ± 0.0052 | 0.4978 ± 0.0023 |
+| retention_14d | 0.7051 ± 0.0032 | 0.3644 ± 0.0037 |
 
-6. **Анализ эмбеддингов**
-   - UMAP или KMeans profiles;
-   - опционально, если останется время после основных абляций.
+## Что делать дальше
 
-## Что уже подготовлено
+1. Синхронизировать с командой общий data contract:
+   - `appmetrica_device_id`;
+   - `split`;
+   - `retention_7d`;
+   - `retention_14d`;
+   - `prefix_len`;
+   - `emb_000...`.
 
-- `configs/rnn_experiments.yaml` — карта экспериментов.
-- `src/pooling.py` — функции для `last / mean / max / last_mean` pooling.
-- `RecurrentEncoder.encode_steps(...)` — получение hidden states по всем шагам.
-- `scripts/run_rnn_experiments.py` — стартовый каркас runner'а и структура output-директорий.
+2. Прогнать RNN, SimCLR и BERT4Rec embeddings через один общий downstream evaluator:
+   - `Baseline`;
+   - `Embedding only`;
+   - `Baseline + Embedding`;
+   - одинаковые XGBoost seeds;
+   - одинаковые `ROC-AUC`, `PR-AUC`, `num_users`, `positive_rate`.
 
-## Ближайшая техническая итерация
+3. Собрать финальный narrative:
+   - RNN хорошо учит next-event структуру;
+   - pooling и capacity важны;
+   - рост next-event качества не гарантирует лучший retention;
+   - финальный RNN-кандидат даёт устойчивый, но умеренный downstream lift;
+   - следующее честное сравнение должно быть только в общем evaluator.
 
-1. Проверить `src/pooling.py` на одной маленькой batch-выборке.
-2. Вынести из `03_downstream_evaluation.ipynb` переиспользуемые downstream-функции в `src/downstream.py`.
-3. Реализовать первую полноценную серию runner'а: `context_saturation`.
-4. После первого полного прогона сохранить:
-   - `context_saturation.csv`;
-   - график `quality_vs_prefix`;
-   - график `valid_users_vs_prefix`.
+Сделано: ключевые RNN-серии вынесены в `scripts/run_rnn_experiments.py`. Раннер не переобучает тяжелые модели с нуля, но по `configs/rnn_experiments.yaml` валидирует и материализует таблицы, графики и manifest для финальных артефактов.

@@ -1,0 +1,181 @@
+feature_set,label,split,roc_auc,pr_auc,num_users,seed,candidate,feature_group,num_features
+Baseline,retention_7d,val,0.6472983986309206,0.46169811020944485,2783,11,Baseline,baseline,15
+Baseline,retention_7d,test,0.6585132627195365,0.45178402017806135,2805,11,Baseline,baseline,15
+Baseline,retention_14d,val,0.7045124453806296,0.34148057491838824,2318,11,Baseline,baseline,15
+Baseline,retention_14d,test,0.6762788949445593,0.33401829778591663,2303,11,Baseline,baseline,15
+GRU h128 l1 max,retention_7d,val,0.6738911986348661,0.47870258522388465,2783,11,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_7d,test,0.6806152805439878,0.4741872107908951,2805,11,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_7d,val,0.6688255804777968,0.47363226643699274,2783,11,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_7d,test,0.6739964944575211,0.48604507976919986,2805,11,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h128 l1 max,retention_14d,val,0.6864888243924772,0.35486540689299106,2318,11,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_14d,test,0.7015736390402807,0.3667021486202954,2303,11,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_14d,val,0.6959522743006068,0.3563161597564824,2318,11,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_14d,test,0.705347365783374,0.36546527052367644,2303,11,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h256 l1 max,retention_7d,val,0.6669373014933618,0.4788850119400474,2783,11,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_7d,test,0.6881538314523105,0.4924428946254871,2805,11,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_7d,val,0.6640084038586732,0.4713625002922812,2783,11,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_7d,test,0.6946487667732916,0.5005169142095677,2805,11,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l1 max,retention_14d,val,0.7064880593202456,0.376310922742633,2318,11,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_14d,test,0.7042084821148907,0.3761672372044952,2303,11,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_14d,val,0.7066435417414771,0.3582726773335678,2318,11,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_14d,test,0.7014734072542755,0.3631965898688943,2303,11,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_7d,val,0.667016827444714,0.4756473903298024,2783,11,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_7d,test,0.678441919649144,0.4778564242353805,2805,11,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_7d,val,0.6672387603322087,0.4732240515535297,2783,11,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_7d,test,0.6763666334721468,0.4760645380109714,2805,11,GRU h256 l2 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_14d,val,0.7094348213988235,0.3686055743245803,2318,11,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_14d,test,0.7001453360897074,0.3536384170763052,2303,11,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_14d,val,0.7023517333204998,0.3885861545754429,2318,11,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_14d,test,0.6939472530226148,0.36154245232030957,2303,11,GRU h256 l2 max,baseline_plus_embedding,271
+LSTM h128 l1 max,retention_7d,val,0.6696387179183682,0.4650226932520158,2783,11,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_7d,test,0.6928086084454906,0.4933335565056073,2805,11,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_7d,val,0.6674286362470655,0.47359578945032954,2783,11,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_7d,test,0.6860936336934436,0.4825324387676901,2805,11,LSTM h128 l1 max,baseline_plus_embedding,143
+LSTM h128 l1 max,retention_14d,val,0.7036720999134976,0.37203436569393483,2318,11,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_14d,test,0.7055089895383073,0.36425127568534493,2303,11,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_14d,val,0.7020987658891311,0.37497850858781817,2318,11,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_14d,test,0.7004585604209735,0.37198482070392846,2303,11,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline,retention_7d,val,0.6503678537610226,0.4636205507778989,2783,42,Baseline,baseline,15
+Baseline,retention_7d,test,0.6638721658921278,0.46205965541158656,2805,42,Baseline,baseline,15
+Baseline,retention_14d,val,0.697577435798717,0.34110128695468434,2318,42,Baseline,baseline,15
+Baseline,retention_14d,test,0.6830470462945561,0.34396190097329277,2303,42,Baseline,baseline,15
+GRU h128 l1 max,retention_7d,val,0.6606467370933696,0.47546078433961536,2783,42,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_7d,test,0.6814413714366185,0.475860680665819,2805,42,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_7d,val,0.6629628533664753,0.4657662777599511,2783,42,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_7d,test,0.677406476954956,0.4760007148981674,2805,42,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h128 l1 max,retention_14d,val,0.6898576101858263,0.35182120267423206,2318,42,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_14d,test,0.6912121781619995,0.357899445887962,2303,42,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_14d,val,0.7001305558743358,0.36986709644811794,2318,42,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_14d,test,0.6950172273382197,0.360310177315729,2303,42,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h256 l1 max,retention_7d,val,0.6671499871772109,0.47484551532239194,2783,42,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_7d,test,0.6808786991771782,0.48249358366488415,2805,42,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_7d,val,0.665325822138052,0.4778374318267271,2783,42,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_7d,test,0.6884964642806848,0.4945734914759417,2805,42,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l1 max,retention_14d,val,0.7098944817314325,0.3669786655364563,2318,42,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_14d,test,0.7043638413831985,0.35896215744341664,2303,42,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_14d,val,0.6975342462372637,0.3662968762880574,2318,42,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_14d,test,0.7100231786005137,0.36621052428459705,2303,42,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_7d,val,0.6635041230198655,0.4712220386832713,2783,42,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_7d,test,0.6840724143480799,0.4910895508150511,2805,42,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_7d,val,0.6668701051468703,0.4798435893335676,2783,42,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_7d,test,0.6812640825235883,0.4823854962921795,2805,42,GRU h256 l2 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_14d,val,0.7055045713065831,0.36727771950031346,2318,42,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_14d,test,0.6904829919188122,0.3657833764758469,2303,42,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_14d,val,0.7069458686716494,0.3778287307131904,2318,42,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_14d,test,0.6943381569880348,0.3544683267366686,2303,42,GRU h256 l2 max,baseline_plus_embedding,271
+LSTM h128 l1 max,retention_7d,val,0.6686406364048845,0.46981769540359714,2783,42,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_7d,test,0.6885272698010341,0.47947217494468086,2805,42,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_7d,val,0.6654632972322503,0.4649304045542414,2783,42,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_7d,test,0.6908640885589554,0.48768916802235585,2805,42,LSTM h128 l1 max,baseline_plus_embedding,143
+LSTM h128 l1 max,retention_14d,val,0.7054040013277705,0.3745500365236371,2318,42,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_14d,test,0.6971985215811565,0.3602818821620364,2303,42,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_14d,val,0.7126407208461205,0.3692997362910273,2318,42,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_14d,test,0.6980204222263986,0.361030674681617,2303,42,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline,retention_7d,val,0.6535008063561578,0.46875483099722615,2783,77,Baseline,baseline,15
+Baseline,retention_7d,test,0.6605476844307643,0.4521269307114083,2805,77,Baseline,baseline,15
+Baseline,retention_14d,val,0.6982376190952156,0.33988498353810614,2318,77,Baseline,baseline,15
+Baseline,retention_14d,test,0.6773852032825909,0.34036648353128673,2303,77,Baseline,baseline,15
+GRU h128 l1 max,retention_7d,val,0.6676487196938312,0.4660090682606346,2783,77,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_7d,test,0.6830489166515783,0.47532579118898166,2805,77,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_7d,val,0.6641705381625929,0.469374132024616,2783,77,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_7d,test,0.6806957521073491,0.4848545624134875,2805,77,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h128 l1 max,retention_14d,val,0.6896478323159108,0.3532505869985062,2318,77,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_14d,test,0.6933395978199586,0.3539172926965364,2303,77,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_14d,val,0.6981290281978476,0.3589976710073287,2318,77,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_14d,test,0.6936139823341477,0.35923208515585403,2303,77,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h256 l1 max,retention_7d,val,0.6660575841865419,0.4782541328116765,2783,77,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_7d,test,0.6895583117066008,0.49455207442660126,2805,77,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_7d,val,0.6632495166794894,0.48086742814065697,2783,77,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_7d,test,0.6876401965517935,0.49642990047718005,2805,77,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l1 max,retention_14d,val,0.7012152308605458,0.36572053418395384,2318,77,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_14d,test,0.7058410073294494,0.3725738526135134,2303,77,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_14d,val,0.7023393934457989,0.36413437812218175,2318,77,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_14d,test,0.7059625383699806,0.36798906398049774,2303,77,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_7d,val,0.6615011787102247,0.4694021155178859,2783,77,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_7d,test,0.6876452260245036,0.48450602041257246,2805,77,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_7d,val,0.6602484908563651,0.47329420358836793,2783,77,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_7d,test,0.6795238849659002,0.47359099951376543,2805,77,GRU h256 l2 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_14d,val,0.6990137972139031,0.361353974255029,2318,77,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_14d,test,0.6970143456743719,0.3713869845145518,2303,77,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_14d,val,0.6984782466518835,0.3510201944886459,2318,77,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_14d,test,0.6921794148969492,0.3607426612388766,2303,77,GRU h256 l2 max,baseline_plus_embedding,271
+LSTM h128 l1 max,retention_7d,val,0.663625261387623,0.47107043018237293,2783,77,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_7d,test,0.6961312038545879,0.4897938413370988,2805,77,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_7d,val,0.6656802982778008,0.4725558161300617,2783,77,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_7d,test,0.6816991319130101,0.48418866925749665,2805,77,LSTM h128 l1 max,baseline_plus_embedding,143
+LSTM h128 l1 max,retention_14d,val,0.7010461745771434,0.37384578741210994,2318,77,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_14d,test,0.6942216375368038,0.3536935563081256,2303,77,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_14d,val,0.706099353267167,0.38043264327711657,2318,77,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_14d,test,0.6966535112447536,0.3620243506003875,2303,77,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline,retention_7d,val,0.6490849583752539,0.458122964613479,2783,123,Baseline,baseline,15
+Baseline,retention_7d,test,0.6593116915122619,0.45396101149001256,2805,123,Baseline,baseline,15
+Baseline,retention_14d,val,0.7037337992870021,0.341009812466543,2318,123,Baseline,baseline,15
+Baseline,retention_14d,test,0.6797331328697613,0.34310004411912565,2303,123,Baseline,baseline,15
+GRU h128 l1 max,retention_7d,val,0.6702786244106449,0.4741709809485197,2783,123,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_7d,test,0.6790976371537207,0.4800015633002794,2805,123,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_7d,val,0.6681825915843048,0.4705574365377799,2783,123,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_7d,test,0.6810434144084334,0.4847182088768008,2805,123,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h128 l1 max,retention_14d,val,0.6949181928006704,0.3633259773334212,2318,123,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_14d,test,0.694888178913738,0.361057460361199,2303,123,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_14d,val,0.6967691740058071,0.363265293703893,2318,123,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_14d,test,0.6996516945436322,0.36058272271421826,2303,123,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h256 l1 max,retention_7d,val,0.6752943076680279,0.4868390145929321,2783,123,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_7d,test,0.6850217273221075,0.4886382419911281,2805,123,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_7d,val,0.667284996350437,0.4839865854111954,2783,123,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_7d,test,0.6899700997847386,0.49884509476354766,2805,123,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l1 max,retention_14d,val,0.7109933475735488,0.37857905355417265,2318,123,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_14d,test,0.7045179477541815,0.3661310422861723,2303,123,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_14d,val,0.7086265596059137,0.36881578544753896,2318,123,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_14d,test,0.7033991104428992,0.3584895485590861,2303,123,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_7d,val,0.6685660422954764,0.4806082480785129,2783,123,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_7d,test,0.6801223922183998,0.4767406504951742,2805,123,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_7d,val,0.6589181264918822,0.4680804810560364,2783,123,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_7d,test,0.6808409781318526,0.47227123494066925,2805,123,GRU h256 l2 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_14d,val,0.7111303201827288,0.38232557198872696,2318,123,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_14d,test,0.6974741589926705,0.36133600468381083,2303,123,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_14d,val,0.7047765186992292,0.3640360440658357,2318,123,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_14d,test,0.7001916932907348,0.36485534711511997,2303,123,GRU h256 l2 max,baseline_plus_embedding,271
+LSTM h128 l1 max,retention_7d,val,0.6629807312935235,0.472583059882994,2783,123,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_7d,test,0.6929708089403906,0.4943924386027978,2805,123,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_7d,val,0.6672449251346393,0.47494131526410055,2783,123,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_7d,test,0.6970220492083611,0.5090627124260365,2805,123,LSTM h128 l1 max,baseline_plus_embedding,143
+LSTM h128 l1 max,retention_14d,val,0.7036560580763864,0.38113279179169457,2318,123,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_14d,test,0.6927670237424043,0.3616268432432349,2303,123,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_14d,val,0.7040805497660976,0.37703897075428255,2318,123,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_14d,test,0.69941364405187,0.3691334635926863,2303,123,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline,retention_7d,val,0.6476226672387604,0.4623540267141974,2783,202,Baseline,baseline,15
+Baseline,retention_7d,test,0.6624959764218319,0.45569107521358393,2805,202,Baseline,baseline,15
+Baseline,retention_14d,val,0.6970320133369365,0.3417795499295958,2318,202,Baseline,baseline,15
+Baseline,retention_14d,test,0.6773826974879409,0.34445975457393085,2303,202,Baseline,baseline,15
+GRU h128 l1 max,retention_7d,val,0.6655514539070052,0.47024137249749204,2783,202,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_7d,test,0.6763364566358863,0.4714915728565298,2805,202,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_7d,val,0.6702397861553333,0.4719413627814726,2783,202,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_7d,test,0.6750652574084133,0.4806378295398597,2805,202,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h128 l1 max,retention_14d,val,0.6972775768434847,0.37152776273894833,2318,202,GRU h128 l1 max,embedding,128
+GRU h128 l1 max,retention_14d,test,0.7017465388711395,0.3568320457327634,2303,202,GRU h128 l1 max,embedding,128
+Baseline + GRU h128 l1 max,retention_14d,val,0.6915629808694923,0.3696764129642514,2318,202,GRU h128 l1 max,baseline_plus_embedding,143
+Baseline + GRU h128 l1 max,retention_14d,test,0.6938269748794086,0.35402976662009333,2303,202,GRU h128 l1 max,baseline_plus_embedding,143
+GRU h256 l1 max,retention_7d,val,0.6662283492138644,0.476665882891815,2783,202,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_7d,test,0.688068959100328,0.494340567356839,2805,202,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_7d,val,0.6684408968061392,0.4869642076669791,2783,202,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_7d,test,0.7000956857183094,0.4983849297703222,2805,202,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l1 max,retention_14d,val,0.6983548479048743,0.3669329081400893,2318,202,GRU h256 l1 max,embedding,256
+GRU h256 l1 max,retention_14d,test,0.7024970243688529,0.3639682567760112,2303,202,GRU h256 l1 max,embedding,256
+Baseline + GRU h256 l1 max,retention_14d,val,0.7013966270186492,0.3736402594557632,2318,202,GRU h256 l1 max,baseline_plus_embedding,271
+Baseline + GRU h256 l1 max,retention_14d,test,0.7045141890622064,0.3661455535919859,2303,202,GRU h256 l1 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_7d,val,0.6675587135783472,0.4733042272425797,2783,202,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_7d,test,0.6856478966745126,0.4835616396927325,2805,202,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_7d,val,0.6669033950799945,0.47653095136089973,2783,202,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_7d,test,0.6797244351902146,0.4882357944701305,2805,202,GRU h256 l2 max,baseline_plus_embedding,271
+GRU h256 l2 max,retention_14d,val,0.7069236568971878,0.3734539771548997,2318,202,GRU h256 l2 max,embedding,256
+GRU h256 l2 max,retention_14d,test,0.6862933032637977,0.3590853710268741,2303,202,GRU h256 l2 max,embedding,256
+Baseline + GRU h256 l2 max,retention_14d,val,0.7056205661287716,0.380722243429168,2318,202,GRU h256 l2 max,baseline_plus_embedding,271
+Baseline + GRU h256 l2 max,retention_14d,test,0.6978187057570632,0.36504218358660956,2303,202,GRU h256 l2 max,baseline_plus_embedding,271
+LSTM h128 l1 max,retention_7d,val,0.6643628799984218,0.4625187546360102,2783,202,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_7d,test,0.6882431045929144,0.4843035299318572,2805,202,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_7d,val,0.6710544647965122,0.47189933364552383,2783,202,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_7d,test,0.6859264037258334,0.48859887278241687,2805,202,LSTM h128 l1 max,baseline_plus_embedding,143
+LSTM h128 l1 max,retention_14d,val,0.7042236923126282,0.37531613920116813,2318,202,LSTM h128 l1 max,embedding,128
+LSTM h128 l1 max,retention_14d,test,0.698211489068471,0.3554113633149494,2303,202,LSTM h128 l1 max,embedding,128
+Baseline + LSTM h128 l1 max,retention_14d,val,0.7072000700904884,0.3710532085724672,2318,202,LSTM h128 l1 max,baseline_plus_embedding,143
+Baseline + LSTM h128 l1 max,retention_14d,test,0.7007128985779615,0.3714427397173907,2303,202,LSTM h128 l1 max,baseline_plus_embedding,143

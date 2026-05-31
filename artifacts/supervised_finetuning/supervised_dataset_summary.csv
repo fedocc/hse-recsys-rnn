@@ -1,0 +1,7 @@
+label,split,num_users,positive_rate
+retention_14d,test,2303,0.18454190186712982
+retention_14d,train,10586,0.18042697902890611
+retention_14d,val,2318,0.18507333908541845
+retention_7d,test,2805,0.2812834224598931
+retention_7d,train,12959,0.27733621421405974
+retention_7d,val,2783,0.298598634567014

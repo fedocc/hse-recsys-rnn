@@ -1,0 +1,110 @@
+section,metric,value,details
+sequence_modeling,GRU_mrr_test,0.888497,next-event prediction
+sequence_modeling,GRU_hit10_test,0.992561,next-event prediction
+sequence_modeling,LSTM_mrr_test,0.888610,next-event prediction
+sequence_modeling,LSTM_hit10_test,0.992658,next-event prediction
+sequence_modeling,Markov1_mrr_test,0.815801,next-event prediction
+sequence_modeling,Markov1_hit10_test,0.977466,next-event prediction
+sequence_modeling,MostPopular_mrr_test,0.451016,next-event prediction
+sequence_modeling,MostPopular_hit10_test,0.878082,next-event prediction
+downstream_prefix_ablation,best_retention_14d_roc_auc_test,0.693430,prefix_len=50; feature_set=Baseline; num_users=3274
+downstream_prefix_ablation,best_retention_14d_pr_auc_test,0.343962,prefix_len=150; feature_set=Baseline; num_users=2303
+downstream_prefix_ablation,best_retention_7d_roc_auc_test,0.684630,prefix_len=100; feature_set=Baseline + GRU; num_users=3195
+downstream_prefix_ablation,best_retention_7d_pr_auc_test,0.462060,prefix_len=150; feature_set=Baseline; num_users=2805
+pooling_ablation,best_retention_14d_roc_auc_test,0.702511,pooling=max; feature_set=GRU max; num_features=128; num_users=2303
+pooling_ablation,best_retention_14d_pr_auc_test,0.366277,pooling=max; feature_set=GRU max; num_features=128; num_users=2303
+pooling_ablation,best_retention_7d_roc_auc_test,0.682674,pooling=max; feature_set=GRU max; num_features=128; num_users=2805
+pooling_ablation,best_retention_7d_pr_auc_test,0.481177,pooling=mean; feature_set=GRU mean; num_features=128; num_users=2805
+supervised_vs_reference,best_retention_14d_roc_auc_test,0.697874,mode=baseline_plus_next_event_gru_mean_xgb; num_users=2303
+supervised_vs_reference,best_retention_14d_pr_auc_test,0.366251,mode=baseline_plus_next_event_gru_mean_xgb; num_users=2303
+supervised_vs_reference,best_retention_7d_roc_auc_test,0.688240,mode=finetuned; num_users=2805
+supervised_vs_reference,best_retention_7d_pr_auc_test,0.486162,mode=frozen_head; num_users=2805
+capacity_sweep,best_next_event_mrr_test,0.892522,experiment_id=gru_h256_l2_d02; model_type=gru; hidden_dim=256; num_layers=2
+capacity_sweep,best_next_event_hit5_test,0.976047,experiment_id=gru_h256_l2_d02; model_type=gru; hidden_dim=256; num_layers=2
+capacity_sweep,best_next_event_hit10_test,0.993778,experiment_id=gru_h256_l2_d02; model_type=gru; hidden_dim=256; num_layers=2
+capacity_sweep,best_retention_14d_baseline_plus_embedding_roc_auc_test,0.710023,experiment_id=gru_h256_l1; model_type=gru; hidden_dim=256; num_layers=1; pooling=max; num_users=2303
+capacity_sweep,best_retention_14d_baseline_plus_embedding_pr_auc_test,0.366211,experiment_id=gru_h256_l1; model_type=gru; hidden_dim=256; num_layers=1; pooling=max; num_users=2303
+capacity_sweep,best_retention_14d_embedding_roc_auc_test,0.704364,experiment_id=gru_h256_l1; model_type=gru; hidden_dim=256; num_layers=1; pooling=max; num_users=2303
+capacity_sweep,best_retention_14d_embedding_pr_auc_test,0.372302,experiment_id=gru_h128_l2_d02; model_type=gru; hidden_dim=128; num_layers=2; pooling=max; num_users=2303
+capacity_sweep,best_retention_7d_baseline_plus_embedding_roc_auc_test,0.690864,experiment_id=lstm_h128_l1_ref; model_type=lstm; hidden_dim=128; num_layers=1; pooling=max; num_users=2805
+capacity_sweep,best_retention_7d_baseline_plus_embedding_pr_auc_test,0.494573,experiment_id=gru_h256_l1; model_type=gru; hidden_dim=256; num_layers=1; pooling=max; num_users=2805
+capacity_sweep,best_retention_7d_embedding_roc_auc_test,0.688527,experiment_id=lstm_h128_l1_ref; model_type=lstm; hidden_dim=128; num_layers=1; pooling=max; num_users=2805
+capacity_sweep,best_retention_7d_embedding_pr_auc_test,0.491090,experiment_id=gru_h256_l2_d02; model_type=gru; hidden_dim=256; num_layers=2; pooling=max; num_users=2805
+final_stability,best_retention_14d_baseline_roc_auc_mean_test,0.678765,candidate=Baseline; roc_auc_std=0.002705; pr_auc_mean=0.341181; pr_auc_std=0.004305; num_users=2303
+final_stability,best_retention_14d_baseline_plus_embedding_roc_auc_mean_test,0.705074,candidate=GRU h256 l1 max; roc_auc_std=0.003216; pr_auc_mean=0.364406; pr_auc_std=0.003728; num_users=2303
+final_stability,best_retention_14d_embedding_roc_auc_mean_test,0.704286,candidate=GRU h256 l1 max; roc_auc_std=0.001192; pr_auc_mean=0.367561; pr_auc_std=0.006857; num_users=2303
+final_stability,best_retention_7d_baseline_roc_auc_mean_test,0.660948,candidate=Baseline; roc_auc_std=0.002220; pr_auc_mean=0.455125; pr_auc_std=0.004181; num_users=2805
+final_stability,best_retention_7d_baseline_plus_embedding_roc_auc_mean_test,0.692170,candidate=GRU h256 l1 max; roc_auc_std=0.005192; pr_auc_mean=0.497750; pr_auc_std=0.002296; num_users=2805
+final_stability,best_retention_7d_embedding_roc_auc_mean_test,0.691736,candidate=LSTM h128 l1 max; roc_auc_std=0.003335; pr_auc_mean=0.488259; pr_auc_std=0.006296; num_users=2805
+full_history_aligned,retention_14d_baseline_roc_auc_mean_test,0.923363,roc_auc_std=0.000436; pr_auc_mean=0.493949; pr_auc_std=0.004042; num_users=10260
+full_history_aligned,retention_14d_baseline_plus_rnn_embedding_roc_auc_mean_test,0.938778,roc_auc_std=0.000873; pr_auc_mean=0.556464; pr_auc_std=0.007619; num_users=10260
+full_history_aligned,retention_14d_rnn_embedding_roc_auc_mean_test,0.931938,roc_auc_std=0.001193; pr_auc_mean=0.496038; pr_auc_std=0.008942; num_users=10260
+full_history_aligned,retention_1d_baseline_roc_auc_mean_test,0.943413,roc_auc_std=0.000169; pr_auc_mean=0.862641; pr_auc_std=0.000376; num_users=10260
+full_history_aligned,retention_1d_baseline_plus_rnn_embedding_roc_auc_mean_test,0.964081,roc_auc_std=0.000298; pr_auc_mean=0.900474; pr_auc_std=0.000954; num_users=10260
+full_history_aligned,retention_1d_rnn_embedding_roc_auc_mean_test,0.959816,roc_auc_std=0.000254; pr_auc_mean=0.881784; pr_auc_std=0.001152; num_users=10260
+full_history_aligned,retention_30d_baseline_roc_auc_mean_test,0.972846,roc_auc_std=0.001410; pr_auc_mean=0.117670; pr_auc_std=0.007700; num_users=10260
+full_history_aligned,retention_30d_baseline_plus_rnn_embedding_roc_auc_mean_test,0.975745,roc_auc_std=0.001435; pr_auc_mean=0.238085; pr_auc_std=0.046530; num_users=10260
+full_history_aligned,retention_30d_rnn_embedding_roc_auc_mean_test,0.965843,roc_auc_std=0.002747; pr_auc_mean=0.190982; pr_auc_std=0.045624; num_users=10260
+full_history_aligned,retention_7d_baseline_roc_auc_mean_test,0.926523,roc_auc_std=0.000353; pr_auc_mean=0.651112; pr_auc_std=0.000812; num_users=10260
+full_history_aligned,retention_7d_baseline_plus_rnn_embedding_roc_auc_mean_test,0.947092,roc_auc_std=0.000579; pr_auc_mean=0.717027; pr_auc_std=0.003208; num_users=10260
+full_history_aligned,retention_7d_rnn_embedding_roc_auc_mean_test,0.941303,roc_auc_std=0.000492; pr_auc_mean=0.677736; pr_auc_std=0.002734; num_users=10260
+negative_controls,retention_14d_bag_of_events_roc_auc_test,0.684235,feature_set=Bag-of-events; num_users=2303
+negative_controls,retention_14d_bag_of_events_pr_auc_test,0.346088,feature_set=Bag-of-events; num_users=2303
+negative_controls,retention_14d_baseline_plus_gru_mean_roc_auc_test,0.697874,feature_set=Baseline + GRU mean; num_users=2303
+negative_controls,retention_14d_baseline_plus_gru_mean_pr_auc_test,0.366251,feature_set=Baseline + GRU mean; num_users=2303
+negative_controls,retention_14d_baseline_plus_random_embeddings_roc_auc_test,0.677553,feature_set=Baseline + Random embeddings; num_users=2303
+negative_controls,retention_14d_baseline_plus_random_embeddings_pr_auc_test,0.350935,feature_set=Baseline + Random embeddings; num_users=2303
+negative_controls,retention_14d_baseline_plus_shuffled_gru_mean_roc_auc_test,0.684300,feature_set=Baseline + Shuffled GRU mean; num_users=2303
+negative_controls,retention_14d_baseline_plus_shuffled_gru_mean_pr_auc_test,0.343327,feature_set=Baseline + Shuffled GRU mean; num_users=2303
+negative_controls,retention_14d_baseline_tabular_roc_auc_test,0.683047,feature_set=Baseline tabular; num_users=2303
+negative_controls,retention_14d_baseline_tabular_pr_auc_test,0.343962,feature_set=Baseline tabular; num_users=2303
+negative_controls,retention_14d_gru_mean_roc_auc_test,0.693713,feature_set=GRU mean; num_users=2303
+negative_controls,retention_14d_gru_mean_pr_auc_test,0.360352,feature_set=GRU mean; num_users=2303
+negative_controls,retention_14d_random_embeddings_roc_auc_test,0.498171,feature_set=Random embeddings; num_users=2303
+negative_controls,retention_14d_random_embeddings_pr_auc_test,0.181777,feature_set=Random embeddings; num_users=2303
+negative_controls,retention_14d_shuffled_gru_mean_roc_auc_test,0.682362,feature_set=Shuffled GRU mean; num_users=2303
+negative_controls,retention_14d_shuffled_gru_mean_pr_auc_test,0.360539,feature_set=Shuffled GRU mean; num_users=2303
+negative_controls,retention_7d_bag_of_events_roc_auc_test,0.657483,feature_set=Bag-of-events; num_users=2805
+negative_controls,retention_7d_bag_of_events_pr_auc_test,0.461646,feature_set=Bag-of-events; num_users=2805
+negative_controls,retention_7d_baseline_plus_gru_mean_roc_auc_test,0.675091,feature_set=Baseline + GRU mean; num_users=2805
+negative_controls,retention_7d_baseline_plus_gru_mean_pr_auc_test,0.475728,feature_set=Baseline + GRU mean; num_users=2805
+negative_controls,retention_7d_baseline_plus_random_embeddings_roc_auc_test,0.661618,feature_set=Baseline + Random embeddings; num_users=2805
+negative_controls,retention_7d_baseline_plus_random_embeddings_pr_auc_test,0.445567,feature_set=Baseline + Random embeddings; num_users=2805
+negative_controls,retention_7d_baseline_plus_shuffled_gru_mean_roc_auc_test,0.660969,feature_set=Baseline + Shuffled GRU mean; num_users=2805
+negative_controls,retention_7d_baseline_plus_shuffled_gru_mean_pr_auc_test,0.463282,feature_set=Baseline + Shuffled GRU mean; num_users=2805
+negative_controls,retention_7d_baseline_tabular_roc_auc_test,0.663872,feature_set=Baseline tabular; num_users=2805
+negative_controls,retention_7d_baseline_tabular_pr_auc_test,0.462060,feature_set=Baseline tabular; num_users=2805
+negative_controls,retention_7d_gru_mean_roc_auc_test,0.675604,feature_set=GRU mean; num_users=2805
+negative_controls,retention_7d_gru_mean_pr_auc_test,0.481177,feature_set=GRU mean; num_users=2805
+negative_controls,retention_7d_random_embeddings_roc_auc_test,0.510392,feature_set=Random embeddings; num_users=2805
+negative_controls,retention_7d_random_embeddings_pr_auc_test,0.281843,feature_set=Random embeddings; num_users=2805
+negative_controls,retention_7d_shuffled_gru_mean_roc_auc_test,0.664921,feature_set=Shuffled GRU mean; num_users=2805
+negative_controls,retention_7d_shuffled_gru_mean_pr_auc_test,0.472410,feature_set=Shuffled GRU mean; num_users=2805
+common_valid_prefix_ablation,best_retention_14d_baseline_roc_auc_test,0.679541,prefix_len=300; feature_set=Baseline; num_users=1824
+common_valid_prefix_ablation,best_retention_14d_baseline_pr_auc_test,0.391196,prefix_len=300; feature_set=Baseline; num_users=1824
+common_valid_prefix_ablation,best_retention_14d_baseline_plus_gru_mean_roc_auc_test,0.694955,prefix_len=300; feature_set=Baseline + GRU mean; num_users=1824
+common_valid_prefix_ablation,best_retention_14d_baseline_plus_gru_mean_pr_auc_test,0.409645,prefix_len=300; feature_set=Baseline + GRU mean; num_users=1824
+common_valid_prefix_ablation,best_retention_14d_gru_mean_roc_auc_test,0.702537,prefix_len=150; feature_set=GRU mean; num_users=1824
+common_valid_prefix_ablation,best_retention_14d_gru_mean_pr_auc_test,0.408724,prefix_len=150; feature_set=GRU mean; num_users=1824
+common_valid_prefix_ablation,best_retention_7d_baseline_roc_auc_test,0.673725,prefix_len=50; feature_set=Baseline; num_users=2239
+common_valid_prefix_ablation,best_retention_7d_baseline_pr_auc_test,0.546182,prefix_len=50; feature_set=Baseline; num_users=2239
+common_valid_prefix_ablation,best_retention_7d_baseline_plus_gru_mean_roc_auc_test,0.690349,prefix_len=50; feature_set=Baseline + GRU mean; num_users=2239
+common_valid_prefix_ablation,best_retention_7d_baseline_plus_gru_mean_pr_auc_test,0.565163,prefix_len=50; feature_set=Baseline + GRU mean; num_users=2239
+common_valid_prefix_ablation,best_retention_7d_gru_mean_roc_auc_test,0.694318,prefix_len=50; feature_set=GRU mean; num_users=2239
+common_valid_prefix_ablation,best_retention_7d_gru_mean_pr_auc_test,0.568857,prefix_len=50; feature_set=GRU mean; num_users=2239
+order_sensitivity,mean_cosine,0.878763,GRU mean vs shuffled-prefix GRU mean
+order_sensitivity,median_cosine,0.889076,GRU mean vs shuffled-prefix GRU mean
+order_sensitivity,p05_cosine,0.761039,GRU mean vs shuffled-prefix GRU mean
+order_sensitivity,p95_cosine,0.968688,GRU mean vs shuffled-prefix GRU mean
+order_sensitivity,mean_relative_l2,0.472765,GRU mean vs shuffled-prefix GRU mean
+order_sensitivity,median_relative_l2,0.472977,GRU mean vs shuffled-prefix GRU mean
+order_sensitivity_correlations,sequence_len_corr_with_relative_l2,-0.059049,correlation with order_relative_l2_distance
+order_sensitivity_correlations,prefix_active_days_corr_with_relative_l2,-0.124763,correlation with order_relative_l2_distance
+order_sensitivity_correlations,prefix_session_count_corr_with_relative_l2,-0.214519,correlation with order_relative_l2_distance
+order_sensitivity_correlations,unique_event_count_corr_with_relative_l2,-0.337900,correlation with order_relative_l2_distance
+order_sensitivity_correlations,prefix_len_feature_corr_with_relative_l2,-0.422730,correlation with order_relative_l2_distance
+order_sensitivity_correlations,repeat_ratio_corr_with_relative_l2,-0.461469,correlation with order_relative_l2_distance
+embedding_space,GRU_mean_norm,8.443968,full-history embeddings
+embedding_space,GRU_pca10_cumulative_variance,0.605256,full-history embeddings
+embedding_space,LSTM_mean_norm,6.953710,full-history embeddings
+embedding_space,LSTM_pca10_cumulative_variance,0.577883,full-history embeddings

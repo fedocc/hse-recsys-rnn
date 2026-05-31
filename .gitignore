@@ -13,6 +13,16 @@ artifacts/**/split_users.*
 artifacts/experiments/
 old/
 reports/intermediate_team_slides/
+reports/evaluation_protocol_draft.md
+reports/notebook_text_review.md
+reports/rnn_branch_summary.md
+reports/rnn_final_audit.md
+reports/team_integration_plan.md
+handoff/
+artifacts/team_comparison/
+artifacts/team_eval/
+artifacts/rnn_full_history_smoke/
+artifacts/rnn_full_history_simclr_aligned_smoke/
 
 # LaTeX / report build files
 *.aux
@@ -34,3 +44,8 @@ reports/intermediate_team_slides/
 !artifacts/rnn/*.pt
 !artifacts/downstream/*.csv
 !artifacts/downstream/*_config.json
+
+# User-level split diagnostics stay local; committed artifacts use aggregate summaries.
+artifacts/data/master_split_lesha.csv
+artifacts/data/previous_split.json
+artifacts/data/rnn_master_coverage_diagnostic.csv

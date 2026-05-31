@@ -1,0 +1,13 @@
+metric,value
+master_split_path,/Users/fedornikonov/Downloads/master_split.csv
+master_users,68394
+prepared_users,52495
+overlap_users,52495
+prepared_users_missing_in_master,0
+master_users_missing_in_prepared,15899
+master_train_users,47875
+master_val_users,10259
+master_test_users,10260
+rnn_train_users,36760
+rnn_val_users,7896
+rnn_test_users,7839

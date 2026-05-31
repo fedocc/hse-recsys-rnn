@@ -1,0 +1,7 @@
+experiment_id,epoch,train_loss,source
+gru_h64_l1,0,,cached
+gru_h128_l1_ref,0,,reference
+gru_h256_l1,0,,cached
+gru_h128_l2_d02,0,,cached
+gru_h256_l2_d02,0,,cached
+lstm_h128_l1_ref,0,,reference

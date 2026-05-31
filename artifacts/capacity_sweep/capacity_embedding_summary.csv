@@ -1,0 +1,7 @@
+experiment_id,pooling,num_embedding_features,num_users
+gru_h64_l1,max,64,52495
+gru_h128_l1_ref,max,128,52495
+gru_h256_l1,max,256,52495
+gru_h128_l2_d02,max,128,52495
+gru_h256_l2_d02,max,256,52495
+lstm_h128_l1_ref,max,128,52495

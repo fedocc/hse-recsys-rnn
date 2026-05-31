@@ -1,86 +1,89 @@
-# Пользовательские эмбеддинги с помощью RNN
+# Пользовательские эмбеддинги игровых событий на основе RNN
 
-Курсовой проект в статусе `work in progress`: построение пользовательских эмбеддингов по последовательностям игровых событий с помощью рекуррентных нейронных сетей.
+Репозиторий содержит RNN-часть курсового проекта по теме «Построение эмбеддингов пользователей по последовательности игровых событий на основе контрастивного обучения, трансформеров и RNN».
 
-Главная тема моей части курсача — проверить, насколько `GRU/LSTM`-модели могут сжимать историю действий пользователя в полезный вектор. Для этого в проекте собран pipeline: preprocessing логов, построение пользовательских последовательностей, обучение RNN на next-event prediction, экспорт эмбеддингов и downstream-оценка на задаче retention.
+В этой ветке реализован метод RNN: подготовка последовательностей игровых событий, обучение GRU/LSTM на задаче next-event prediction, экспорт пользовательских эмбеддингов и downstream-оценка на retention-задачах. Для командного сравнения также добавлен согласованный full-history прогон RNN, сопоставимый с SimCLR и BERT4Rec по общей постановке.
 
-В финальной командной работе RNN-подход планируется сравнить с более сложными sequence-моделями, но этот репозиторий в первую очередь про RNN-based user embeddings.
+## Главные материалы
 
-## Текущий статус
+- Финальный отчет: `reports/final_rnn_course_report.pdf`
+- Исходник отчета: `reports/final_rnn_course_report.md`
+- Основные ноутбуки: `notebooks/01_data_and_preprocessing.ipynb` - `notebooks/12_rnn_full_history.ipynb`
+- Код моделей и оценки: `src/`
+- Воспроизводимые скрипты: `scripts/`
+- Конфигурация серий экспериментов: `configs/rnn_experiments.yaml`
+- Сводная таблица RNN-результатов: `artifacts/results_summary.csv`
 
-Это ранняя исследовательская версия репозитория, не финальная сдача курсача.
+## Что реализовано
 
-Уже реализовано:
+- Очистка логов и построение пользовательских последовательностей.
+- User-level train/val/test split.
+- Baseline для next-event prediction: MostPopular и Markov-1.
+- GRU и LSTM encoder для построения пользовательских эмбеддингов.
+- Оценка next-event prediction через MRR, Hit@5 и Hit@10.
+- Prefix-based downstream retention evaluation без утечки будущих событий.
+- Ablation по длине префикса, pooling-стратегии и capacity RNN.
+- Supervised fine-tuning и negative controls.
+- Анализ embedding space через нормы, PCA и KMeans.
+- Full-history RNN-прогон для командного сравнения с SimCLR и BERT4Rec.
+- Runner для проверки и материализации ключевых экспериментальных артефактов.
 
-- очистка event logs и построение последовательностей пользователей;
-- фиксированный `train/val/test` split по пользователям;
-- простые sequence-baseline: `MostPopular` и `Markov-1`;
-- `GRU` и `LSTM` модели для next-event prediction;
-- оценка через `Hit@5`, `Hit@10`, `MRR`;
-- экспорт пользовательских эмбеддингов;
-- downstream benchmark для retention с hand-crafted признаками и RNN-эмбеддингами.
+## Ключевые результаты
 
-В работе:
+### Next-event prediction
 
-- ablation-исследование того, как длина истории, pooling и capacity RNN влияют на качество эмбеддингов;
-- финальное сравнение RNN-подхода с другими sequence-моделями в общей командной работе.
+| Model | Split | MRR | Hit@5 | Hit@10 |
+|---|---:|---:|---:|---:|
+| MostPopular | test | 0.4510 | 0.7154 | 0.8781 |
+| Markov-1 | test | 0.8158 | 0.9408 | 0.9775 |
+| GRU | test | 0.8885 | 0.9733 | 0.9926 |
+| LSTM | test | 0.8886 | 0.9732 | 0.9927 |
 
-## Структура проекта
+### Prefix-based retention
+
+Финальный RNN-кандидат: GRU h256, 1 layer, max pooling, prefix_len = 150.
+
+| Target | Feature set | ROC-AUC | PR-AUC | Test users |
+|---|---|---:|---:|---:|
+| retention_7d | Baseline | 0.6609 ± 0.0022 | 0.4551 ± 0.0042 | 2,805 |
+| retention_7d | Baseline + GRU h256 l1 max | 0.6922 ± 0.0052 | 0.4978 ± 0.0023 | 2,805 |
+| retention_14d | Baseline | 0.6788 ± 0.0027 | 0.3412 ± 0.0043 | 2,303 |
+| retention_14d | Baseline + GRU h256 l1 max | 0.7051 ± 0.0032 | 0.3644 ± 0.0037 | 2,303 |
+
+### Full-history командное сравнение
+
+В командной таблице сравниваются эмбеддинги без дополнительных baseline-признаков в общей full-history постановке.
+
+| Horizon | Model | ROC-AUC | PR-AUC | Test users | Positive rate |
+|---|---|---:|---:|---:|---:|
+| 7d | BERT mean | 0.9296 | 0.6228 | 10,260 | 11.1% |
+| 7d | RNN/GRU | 0.9413 | 0.6777 | 10,260 | 11.1% |
+| 7d | SimCLR | 0.9249 | 0.6263 | 10,260 | 11.1% |
+| 14d | BERT mean | 0.9256 | 0.4467 | 10,260 | 6.0% |
+| 14d | RNN/GRU | 0.9319 | 0.4960 | 10,260 | 6.0% |
+| 14d | SimCLR | 0.9189 | 0.4974 | 10,260 | 6.0% |
+| 30d | BERT mean | 0.9665 | 0.1500 | 10,260 | 0.34% |
+| 30d | RNN/GRU | 0.9658 | 0.1910 | 10,260 | 0.34% |
+| 30d | SimCLR | 0.8621 | 0.1725 | 10,260 | 0.34% |
+
+RNN-числа из этой таблицы воспроизводятся из `artifacts/rnn_full_history_simclr_aligned/aligned_summary.csv`. SimCLR и BERT приведены только для контекста командного сравнения в отчете.
+
+## Структура репозитория
 
 ```text
 hse_recsys_rnn/
-  src/
-    data.py        # очистка, построение последовательностей, Dataset
-    splits.py      # user-level train/val/test split
-    baselines.py   # MostPopular и Markov-1 baselines
-    models.py      # GRU/LSTM encoder для user embeddings
-    train.py       # train loop
-    eval.py        # Hit@K / MRR evaluation
-    export.py      # экспорт user embeddings
-    pooling.py     # pooling hidden states
-  notebooks/
-    01_data_and_preprocessing.ipynb
-    02_rnn_baseline.ipynb
-    03_downstream_evaluation.ipynb
-  configs/
-    rnn_experiments.yaml
-  reports/
-    project_deep_dive.md
-    rnn_next_steps.md
+  artifacts/      # метрики, summary-таблицы, графики и небольшие checkpoints
+  configs/        # конфигурации экспериментов
+  notebooks/      # исследовательские ноутбуки 01-12
+  reports/        # финальный отчет и промежуточные заметки
+  scripts/        # воспроизводимые runner/evaluation scripts
+  src/            # код подготовки данных, моделей, pooling, downstream evaluation
+  tests/          # unit tests для runner и full-history aligned pipeline
 ```
 
-Большие сырые данные, intermediate parquet-таблицы и user-level split-файлы намеренно не коммитятся.
+Большие промежуточные parquet-таблицы, сырые логи, системные кэши и временные smoke-embeddings не входят в git. В репозитории сохранены финальные метрики, графики, конфигурации, небольшие checkpoints, ноутбуки и отчет, то есть все материалы, необходимые для проверки выводов.
 
-## Текущие результаты
-
-### RNN sequence modeling
-
-Текущая оценка next-event prediction на фиксированном split:
-
-| model | split | MRR | Hit@5 | Hit@10 |
-|---|---:|---:|---:|---:|
-| GRU | test | 0.8804 | 0.9686 | 0.9910 |
-| LSTM | test | 0.8806 | 0.9689 | 0.9911 |
-| Markov-1 | test | 0.8128 | 0.9395 | 0.9765 |
-| MostPopular | test | 0.4594 | 0.7278 | 0.8910 |
-
-RNN-модели уже уверенно обгоняют popularity и Markov baseline по sequence-метрикам, то есть лучше восстанавливают локальную структуру пользовательских событий.
-
-### Downstream retention
-
-Для `prefix_len = 150` текущий downstream benchmark на `retention_14d`:
-
-| feature set | split | ROC-AUC | PR-AUC |
-|---|---:|---:|---:|
-| Baseline | test | 0.8741 | 0.3142 |
-| Baseline + GRU | test | 0.8762 | 0.3216 |
-| Baseline + LSTM | test | 0.8720 | 0.3043 |
-| GRU only | test | 0.8462 | 0.2764 |
-| LSTM only | test | 0.8372 | 0.2525 |
-
-Результат пока предварительный: RNN-эмбеддинги сами по себе уже несут сигнал, но на текущей итерации лучше всего работает комбинация sequence representations с простыми hand-crafted признаками.
-
-## Запуск
+## Запуск и проверка
 
 Установка зависимостей:
 
@@ -90,18 +93,31 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Ноутбуки рассчитаны на запуск из корня репозитория:
+Сборка общей сводки результатов:
 
 ```bash
-jupyter notebook
+python scripts/build_results_summary.py
 ```
 
-В репозитории лежат небольшие summary artifacts и метрики. Полные сырые логи и большие embedding-таблицы должны храниться локально в `artifacts/` и игнорируются git.
+Проверка артефактов RNN-экспериментов:
 
-## Следующие шаги
+```bash
+python scripts/run_rnn_experiments.py --strict
+```
 
-- провести context saturation experiments для `prefix_len = 25..300`;
-- сравнить pooling strategies: `last`, `mean`, `max`, `last_mean`;
-- вынести downstream utilities из ноутбука в `src/downstream.py`;
-- проверить, как изменения RNN-архитектуры переносятся из next-event quality в downstream retention;
-- после интеграции с командой сравнить RNN-подход с другими sequence-моделями и собрать финальный отчёт по курсачу.
+Unit tests:
+
+```bash
+python -m unittest tests/test_run_rnn_experiments.py -v
+python -m unittest tests/test_rnn_full_history_simclr_aligned.py -v
+```
+
+Сборка PDF-отчета из Markdown:
+
+```bash
+pandoc reports/final_rnn_course_report.md -o reports/final_rnn_course_report.pdf --pdf-engine=xelatex
+```
+
+## Ограничения
+
+Проект является исследовательской веткой курсовой работы. Часть полной истории экспериментов сохранена в ноутбуках, а runner валидирует и материализует итоговые артефакты. Командное сравнение SimCLR/BERT/RNN приведено к общей full-history постановке, но ветки разрабатывались независимо.

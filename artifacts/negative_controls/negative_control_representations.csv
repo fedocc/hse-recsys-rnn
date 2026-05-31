@@ -1,0 +1,6 @@
+representation,num_features,num_users
+Baseline tabular,15,52495
+GRU mean,128,52495
+Random embeddings,128,52495
+Bag-of-events,10,52495
+Shuffled GRU mean,128,52495

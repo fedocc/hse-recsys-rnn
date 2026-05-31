@@ -1,0 +1,18 @@
+{
+  "seed": 42,
+  "prefix_len": 150,
+  "top_k_events": 10,
+  "horizons": {
+    "retention_7d": 7,
+    "retention_14d": 14
+  },
+  "pooling_strategies": [
+    "last",
+    "mean",
+    "max",
+    "last_mean"
+  ],
+  "batch_size": 512,
+  "n_clusters": 5,
+  "model_checkpoint": "artifacts/rnn/rnn_encoder.pt"
+}

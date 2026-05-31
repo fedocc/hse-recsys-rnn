@@ -1,0 +1,5 @@
+pooling,num_users,embedding_dim,path
+last,52495,128,artifacts/pooling_ablation/embeddings/gru_pooling_last.parquet
+mean,52495,128,artifacts/pooling_ablation/embeddings/gru_pooling_mean.parquet
+max,52495,128,artifacts/pooling_ablation/embeddings/gru_pooling_max.parquet
+last_mean,52495,256,artifacts/pooling_ablation/embeddings/gru_pooling_last_mean.parquet

@@ -38,27 +38,41 @@ series:
 
   capacity_sweep:
     description: "Улучшает ли большая capacity sequence- и downstream-метрики?"
+    pooling: max
+    prefix_len: 150
     experiments:
-      - experiment_id: gru_h64_len128
+      - experiment_id: gru_h64_l1
         model_type: gru
         hidden_dim: 64
-        max_len: 128
-      - experiment_id: gru_h128_len128
+        num_layers: 1
+        dropout: 0.0
+      - experiment_id: gru_h128_l1_ref
         model_type: gru
         hidden_dim: 128
-        max_len: 128
-      - experiment_id: gru_h256_len128
+        num_layers: 1
+        dropout: 0.0
+        source: reference
+      - experiment_id: gru_h256_l1
         model_type: gru
         hidden_dim: 256
-        max_len: 128
-      - experiment_id: gru_h128_len64
+        num_layers: 1
+        dropout: 0.0
+      - experiment_id: gru_h128_l2_d02
         model_type: gru
         hidden_dim: 128
-        max_len: 64
-      - experiment_id: gru_h128_len256
+        num_layers: 2
+        dropout: 0.2
+      - experiment_id: gru_h256_l2_d02
         model_type: gru
+        hidden_dim: 256
+        num_layers: 2
+        dropout: 0.2
+      - experiment_id: lstm_h128_l1_ref
+        model_type: lstm
         hidden_dim: 128
-        max_len: 256
+        num_layers: 1
+        dropout: 0.0
+        source: reference
 
   supervised_retention:
     description: "Может ли supervised training на retention обогнать self-supervised next-event embeddings?"
@@ -69,3 +83,35 @@ series:
       - tabular_baseline
       - next_event_gru_embeddings
       - tabular_plus_gru_embeddings
+
+  final_stability:
+    description: "Насколько устойчив финальный RNN-кандидат к seed?"
+    candidate: gru_h256_l1_max_prefix150
+    seeds: [42, 43, 44]
+    metrics: [roc_auc, pr_auc]
+
+  negative_controls:
+    description: "Проверяют, что эффект RNN не объясняется размерностью или частотными признаками."
+    controls: [random_embeddings, bag_of_events, shuffled_order]
+
+  order_sensitivity:
+    description: "Проверяет, насколько RNN-эмбеддинг реагирует на перестановку событий."
+    compare: [gru_mean_prefix150, shuffled_gru_mean_prefix150]
+
+  embedding_analysis:
+    description: "Диагностика геометрии пространства эмбеддингов и кластеров пользователей."
+    methods: [pca, kmeans, norm_statistics]
+
+  full_history:
+    description: "Отдельный full-history режим для командного сопоставления с SimCLR и BERT4Rec."
+    max_len: 512
+    pooling: max
+    metrics: [roc_auc, pr_auc, mrr, hit@10]
+
+  full_history_aligned:
+    description: "Aligned full-history RNN на SimCLR processed sequences для прямого командного сравнения."
+    source_sequences: SimCLR processed train/val/test sequences
+    max_len: 512
+    pooling: max
+    users: [47875, 10259, 10260]
+    labels: [retention_1d, retention_7d, retention_14d, retention_30d]
