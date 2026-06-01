@@ -4,24 +4,24 @@ RNN-ветка как отдельная исследовательская ча
 
 ## Зафиксировано
 
-- общий user-level split из `master_split_lesha.csv`;
-- честный prefix-based retention protocol;
-- next-event baseline для `GRU/LSTM` против `MostPopular` и `Markov-1`;
-- pooling ablation;
+- общее разбиение пользователей из `master_split_lesha.csv`;
+- честный prefix-based протокол удержания;
+- baseline для next-event prediction против `GRU/LSTM`: `MostPopular` и `Markov-1`;
+- ablation способа pooling скрытых состояний;
 - supervised fine-tuning;
 - negative controls;
-- common-valid prefix ablation;
+- ablation длины префикса на общей валидной когорте;
 - order sensitivity analysis;
-- capacity sweep;
-- final seed stability.
+- перебор ёмкости модели;
+- финальная проверка устойчивости к случайной инициализации.
 
 Финальный RNN-кандидат:
 
 ```text
-GRU, hidden_dim=256, num_layers=1, pooling=max, prefix_len=150
+GRU, hidden_dim=256, num_layers=1, max pooling, prefix_len=150
 ```
 
-Стабильный downstream результат с `Baseline + embedding`:
+Стабильный результат на задаче удержания с `Baseline + embedding`:
 
 | target | ROC-AUC mean ± std | PR-AUC mean ± std |
 |---|---:|---:|
@@ -38,7 +38,7 @@ GRU, hidden_dim=256, num_layers=1, pooling=max, prefix_len=150
    - `prefix_len`;
    - `emb_000...`.
 
-2. Прогнать RNN, SimCLR и BERT4Rec embeddings через один общий downstream evaluator:
+2. Прогнать RNN, SimCLR и BERT4Rec embeddings через один общий скрипт оценки:
    - `Baseline`;
    - `Embedding only`;
    - `Baseline + Embedding`;
@@ -46,10 +46,10 @@ GRU, hidden_dim=256, num_layers=1, pooling=max, prefix_len=150
    - одинаковые `ROC-AUC`, `PR-AUC`, `num_users`, `positive_rate`.
 
 3. Собрать финальный narrative:
-   - RNN хорошо учит next-event структуру;
-   - pooling и capacity важны;
-   - рост next-event качества не гарантирует лучший retention;
-   - финальный RNN-кандидат даёт устойчивый, но умеренный downstream lift;
+   - RNN хорошо учит структуру последовательности событий;
+   - способ pooling и capacity важны;
+   - рост качества next-event prediction не гарантирует лучший retention;
+   - финальный RNN-кандидат даёт устойчивый, но умеренный прирост на задаче удержания;
    - следующее честное сравнение должно быть только в общем evaluator.
 
 Сделано: ключевые RNN-серии вынесены в `scripts/run_rnn_experiments.py`. Раннер не переобучает тяжелые модели с нуля, но по `configs/rnn_experiments.yaml` валидирует и материализует таблицы, графики и manifest для финальных артефактов.
